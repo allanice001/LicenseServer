@@ -26,7 +26,7 @@ class Resource(object):
             print("Found signature: {}".format(signatureQuery.PrimaryKey))
 
             userRow, userExists = recordUser(session, valueDict)
-            availableSignature = signatureQuery.UnlimitedInstalls or signatureQuery.InstallCount <= signatureQuery.InstallLimit
+            availableSignature = signatureQuery.UnlimitedInstalls or signatureQuery.InstallCount <= signatureQuery.InstallLimit or bool(userExists) is True
 
             if userRow is not None and availableSignature:
                 signatureValid = True
